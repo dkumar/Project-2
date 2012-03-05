@@ -1,13 +1,13 @@
                                      GRADER
 
-Name of student running submit:
-Login of student running submit:
+Name of student running submit: Jene Li
+Login of student running submit: cs61b-fo
 
-Second team member's name:
-Second team member's login:
+Second team member's name: Michelle Nguyen
+Second team member's login:cs61b-
 
-Third team member's name (if any):
-Third team member's login:
+Third team member's name (if any): Deepak Kumar
+Third team member's login: cs61b-ei
 
 IMPORTANT:  Once you've submitted Project 2 once, the same team member should
 submit always.  If a different teammate must submit, inform cs61b@cory.eecs of
@@ -61,3 +61,287 @@ You will probably need to change some of your design decisions as you go; be
 sure to modify this file to reflect these changes before you submit your
 project.  Your design of classes and interfaces with be worth about 10% of your
 grade.
+
+## Classes
+   * MachinePlayer
+   * Board
+   * DList
+   * DListNode
+   * InvalidNodeException
+   * Move
+## Modules
+   ### Game Implementation
+   * Implemented by Deepak Kumar
+   * Description: This module contains the internal representation of the game 
+     board.  It is responsible for making moves, determining whether moves are 
+     legal, and updating the game board.  It is also responsible for an 
+     implementation of the DList data structures for use throughout the project.
+   * Interface:
+    #### MachinePlayer
+     public MachinePlayer(int color);
+     /**
+     * This constructor creates a MachinePlayer with the specified color, 'color,'
+     * whose chooseMove method will create a game tree based on our own strategy 
+     * and a player with the specified color represented by the constants for 
+     * white and black.
+     *
+     * @param color the color assigned for the MachinePlayer.
+     */
+     
+     public MachinePlayer(int color, in searchDepth);
+     /** 
+     * This constructor creates a MachinePlayer with the specified color, 'color,'
+     *  whose chooseMove method will choose a move from a game tree that goes up
+     * to the depth, searchDepth.
+     * 
+     * @param color the color assigned for the MachinePlayer.
+     * @param searchDepth the maximum game tree depth the chooseMove method 
+     * will create.
+     */
+
+     protected boolean isLegal(Move m);
+     /** 
+     * isLegal will return true if the given move, m, is a legal move on the 
+     * the current game board based on the rules of Network and false if otherwise
+     *
+     * @param m the Move object that will be checked 
+     * @return true if the move is lega, false otherwise.
+     */
+
+     public boolean opponentMove(Move m);
+     /**
+     * opponentMove will update the internal board with the move, m, if the move
+     * is legal and return tree.  If the move is illegal, the internal board will
+     * not be modified and the method returns false.
+     *
+     * @param m the Move object for the opponents move.
+     * @return true if the move is legal and applied, false otherwise.
+     */
+
+     public boolean forceMove(Move m);
+     /**
+     * forceMove will update the board with move, m, for "this" player if the move
+     * is legal and return true.  forceMove will return false if otherwise.
+     *
+     * @param m the Move object to be updated on the internal board.
+     * @return true if the move is legal and applied, false if otherwise.
+     */
+
+    #### Board
+     protected void makeMove(Move m);
+     /**
+     * makeMove will update "this" game board with the given move m.  The Move is
+     * must be checked for legality before calling this method.  
+     * 
+     * @param m the Move object to be applied to "this" board.
+     */
+
+    #### DList
+     public DList();
+     /**
+     * This constructor will create a new empty DList.  
+     */
+
+     public boolean isEmpty();
+     /**
+     * isEmpty() will return true if "this" DList is empty and false otherwise.
+     *
+     * @return true if "this" DList is empty, false if otherwise.
+     */
+
+     public int length();
+     /**
+     * length() will return an integer with the number of elements in "this" DList
+     *
+     * @return an int of how many elements are in "this" DList.
+     */
+
+     public void insertFront(Object item);
+     /**
+     * insertFront will insert a new DListNode containing "item" in the front of
+     * "this" DList.
+     *
+     * @param item the Object to be inserted at the front of "this" DList.
+     */
+
+     public void insertBack(Object item);
+     /**
+     * insertBack will insert a new DListNode containing "item" at the end of 
+     * "this" DList.
+     *
+     * @param item the Object to be inserted at the end of "this" DList.
+     */
+
+     public DListNode front();
+     /**
+     * front() returns the DListNode at the front of of "this" DList.  If "this"
+     * DList is empty, return an invalid node.
+     *
+     * @return the DListNode at the front of "this" DList.
+     */
+
+     public DListNode back();
+     /**
+     * back() returns the DListNode at the back of "this" DList.  If "this" DList
+     * is empty, return an invalid node.
+     *
+     * @return the DListNode at the front of "this" DList.
+     */
+     
+     public String toString();
+     /**
+     * toStrong() returns the String representation of "this" DList for debugging.
+     *
+     * @return the String representation of "this" DList.
+     */
+
+    #### DListNode
+     protected DListNode(Object i, DList l, DListNode p, DListNode n);
+     /** 
+     * This creates a new DListNode.
+     * @param i the Object to be contained in the node.
+     * @param l the DList that "this" node is a part of.
+     * @param p the preceding DListNode.
+     * @param n the next DListNode.
+     */
+
+     public boolean isValidNode():
+     /**
+     * isValidNode() returns true if "this" node is valid and false if otherwise.
+     *
+     * @return true if "this" node is valid, false if otherwise.
+     */
+
+     public Object item() throws InvalidNodeException;
+     /**
+     * item() returns the item for "this" node.  If the node is invalid, it throws
+     * an exception.
+     *
+     * @return the Object contained in "this" node.
+     * @exception InvalidNodeException if the node isn't valid.
+     */
+
+     public void setItem(Object item) throws InvalidNodeException;
+     /**
+     * setItem sets "this" node's item to "item".  If "this" node is invalid,
+     * it throws an exception.
+     * 
+     * @param item the Object to be stored in "this" node.
+     * @exception InvalidNodeException if the node isn't valid.
+     */
+     
+     public DListNode next() throws InvalidNodeException;
+     /** 
+     * next() returns the DListNode after "this" node.  If the node is invalid,
+     * it throws an exception.
+     *
+     * @return the DListNode after "this" node.
+     * @exception InvalidNodeException if "this" node is invalid.
+     */
+     
+     public DListNode prev() throws InvalidNodeException;
+     /**
+     * prev() returns the DListNode before "this" node.  If the node is invalid, 
+     * it throws an exception.
+     *
+     * @return the DListNode before "this" node.
+     * @exception InvalidNodeException if "this" node is invalid.
+     */
+
+     public void insertAfter(Object item) throws InvalidNodeException;
+     /**
+     * insertAfter inserts a new DListNode containing "item" after "this" node.
+     * If the node is invalid, it throws an exception.
+     *
+     * @param item the Object to be inserted in the new node.
+     * @exception InvalidNodeException if "this" node is invalid.
+     */
+
+     public void insertBefore(Object item) throws InvalidNodeException;
+     /** 
+     * insertBefore inserts a new DListNode containing "item" before "this" node.
+     * If the node is invalid, it throws an exception.
+     *
+     * @param item the Object to be inserted in the new node.
+     * @exception InvalidNodeException if "this" node is invalid.
+     */
+
+     public void remove() throws InvalidNodeException;
+     /**
+     * remove() removes "this" node from it's DList.  If the node is invalid, an
+     * exception is thrown.
+     *
+     * @exception InvalidNodeException if "this" node is invalid.
+     */
+    
+    #### InvalidNodeException
+     protected InvalidNodeException();
+     /**
+     * This creates a new exception that signals when a program attempts to use an
+     * invalid node.
+     */
+
+   ### Move Selection
+   * Implemented by Michelle Nguyen
+   * Description: This module is responsible for determining which move will 
+     result in the greatest chance of winning a game of Network based on 
+     the current game board.  It will use the minimax algorithm and alpha-beta
+     pruning to create a game tree that efficiently and effectively determines a
+     winning move.
+   * Interface:
+    #### MachinePlayer
+     public Move chooseMove();
+     /**
+     * chooseMove() returns a Move object with a move that has the highest chances
+     * of winning based on the current game board.
+     *
+     * @return a Move object with the best chances of winning the game.
+     */
+
+   ### Network Identification
+   * Implemented by Jene Li
+   * Description: This module contains the methods used to identify whether or not
+     there are networks on a game board as defined by the rules of Network.
+   * Interface:
+    #### Board
+     protected boolean isNetwork(int player);
+     /**
+     * isNetwork returns true if "this" board contains a network for the "player"
+     * and false if otherwise.
+     *
+     * @param player the player to check for networks.
+     * @return true if "this board has a network for "player," false if otherwise.
+     */
+     
+     protected DList listConnections(int x, int y);
+     /**
+     * listConnections returns a DList containing all the pieces with connections
+     * to the piece in coordinates (x, y) on "this" board.  The DList contains 
+     * a list of two element arrays containing the x and y coord of the pieces.
+     * 
+     * @param x the x-coordinate of the piece.
+     * @param y the y-coordinate of the piece.
+     * @return a DList with all the pieces that make connections with the piece.
+     */
+
+   ### Evaluation
+   * Implemented by Jene Li, Michelle Nguyen, and Deepak Kumar
+   * Description: This module contains methods used to determine the outcome of a
+     game based on the given game board.  It uses the teams own strategies to 
+     figure the score of each board.
+   * Interface:
+    #### MachinePlayer
+     private float evaluateBoard(Board b);
+     /**
+     * evaluateBoard predicts the outcome of the game for the given board, b, 
+     * based on the team's devised strategies and returns a floating point number
+     * between -1 and 1 to represent the outcome.  Scores closer to 1 mean "this"
+     * player is more likely to win and scores closer to -1 mean the opponent is
+     * more likely to win.  
+     *
+     * @param b the Board object to be evaluated.
+     * @return a floating point number between -1 to 1 of the possible outcome.
+     */
+
+    
+     
