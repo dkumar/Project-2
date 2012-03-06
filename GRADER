@@ -128,12 +128,13 @@ grade.
      */
 
     #### Board
-     protected void makeMove(Move m);
+     protected void makeMove(Move m, int player);
      /**
-     * makeMove will update "this" game board with the given move m.  The Move is
-     * must be checked for legality before calling this method.  
+     * makeMove will update "this" game board with the given move m for player.  
+     * The Move is must be checked for legality before calling this method.  
      * 
      * @param m the Move object to be applied to "this" board.
+     * @param player the player who's making the move.
      */
 
     #### DList
