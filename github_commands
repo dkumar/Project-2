@@ -25,7 +25,7 @@ git clone git@github.com:USERNAME/REPO-NAME.git //Copy files from repo
                                                 to your computer.
 
 ## Making and Getting Changes ##
-git add filename //Add the file to list of files to be committed
-git commit -m 'comment' //Add your changes to the repo log with a
+git add filename //Add a new file to the list of files to be tracked.
+git commit  -am 'comment' //Add your changes to the repo log with a
                               comment for the change.  Be descriptive.
 git push origin master //Add your changes to GitHub.
