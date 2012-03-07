@@ -21,11 +21,11 @@ public class Board {
 	}
 
 	/*
-		makeMove takes a Move m and changes the board accordingly.
+		makeMove takes a Move m and changes "this" board accordingly.
 		Assumes Move m is a legal move.
-		If Move m is adding a piece to the board, makeMove decrements the number of pieces of the player making the move accordingly.
-		playerColor i
-
+		If Move m is an ADD Move, makeMove decrements the number of pieces of playerColor accordingly.
+		@Move m is the Move object to be applied to "this board"
+		@int playerColor is the color of the player making the move
 	*/
 	protected void makeMove(Move m, int playerColor) {
 		if (m.moveKind == Move.ADD) {
@@ -51,7 +51,7 @@ public class Board {
 	/*
 		undoMove takes a Move m and undoes the Move on the game board
 	*/
-	protected void undoMove(Move m) {
+	protected void undoMove(Move m, int playerColor) {
 	}
 
 //	protected DList listLegalMoves(int x, int y, int player) {
