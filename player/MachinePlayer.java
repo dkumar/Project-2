@@ -61,14 +61,14 @@ public class MachinePlayer extends Player {
 	}
   }
 
-  /*
+    /**
      * isLegal will return true if the given Move m is a legal move on the
      * the current game board based on the rules of Network and false if otherwise
      *
      * @param m the Move object that will be checked
      * @param playerColor is the color of the player making the Move
      * @return true if the move is legal false otherwise.
-  */
+     */
   protected boolean isLegal(Move m, int playerColor) {
 	  //cluster rule not implemented yet
 	  //run through 2 for loops or check corners
@@ -85,7 +85,7 @@ public class MachinePlayer extends Player {
 	  return true;
 	  }
 
-  /*
+    /**
      * checkNeighbor will return the number of pieces of color playerColor that neighbor a square on the game board with coordinates (x,y).
      * A piece neighbors a square if it is connected to the square orthogonally or diagonally.
      * It ignores any pieces that are not of color playerColor
@@ -93,7 +93,7 @@ public class MachinePlayer extends Player {
      * @param y is the y-coorindate of the game board square
      * @param playerColor is the color of pieces to search for
      * @returns the number of neighbors of a square on the game board with coordinates (x,y)
-  */
+     */
   private int checkNeighbor(int x, int y, int playerColor) {
 	  return 0;
   }

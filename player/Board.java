@@ -9,9 +9,9 @@ public class Board {
 	protected int whiteAddPieces = 10;   //Machine player's pieces
 	protected int blackAddPieces = 10;
 
-	/*
-		Sets each item on the board to EMPTY.
-	*/
+    /**
+     * Sets each item on the board to EMPTY.
+     */
 	public Board() {
 		for (int i = 0; i<8; i++) {
 			for (int y =0; y<8; y++) {
@@ -19,15 +19,15 @@ public class Board {
 			}
 		}
 	}
-
-	/*
-		makeMove takes a Move m and int player and changes "this" board accordingly.
-		Assumes Move m is a legal move.
-		If Move m is an ADD Move, and the player of playerColor is out of pieces, the method does nothing.
-		Else, makeMove adds the piece to the board and decrements the number of pieces of playerColor accordingly.
-		@m is the Move object to be applied to "this board"
-		@playerColor is the color of the player making the move
-	*/
+    
+    /**
+     * makeMove takes a Move m and int player and changes "this" board accordingly.
+     * Assumes Move m is a legal move.
+     * If Move m is an ADD Move, and the player of playerColor is out of pieces, the method does nothing.
+     * Else, makeMove adds the piece to the board and decrements the number of pieces of playerColor accordingly.
+     * @param m is the Move object to be applied to "this board"
+     * @playerColor is the color of the player making the move
+     */
 	protected void makeMove(Move m, int playerColor) {
 		if (m.moveKind == Move.ADD) {
 			if ((playerColor == BLACK) && (blackAddPieces <= 0) || (playerColor == WHITE) && (whiteAddPieces <= 0)) {
@@ -49,13 +49,13 @@ public class Board {
 		}
 	}
 
-	/*
-		undoMove takes a Move m and undoes the Move m on "this" game board
-		Assumes Move m is a legal.
-		If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
-		@param m is the Move object you want to undo on "this board"
-		@param playerColor is the color of the player who made the move
-	*/
+    /**
+     * undoMove takes a Move m and undoes the Move m on "this" game board
+     * Assumes Move m is a legal.
+     * If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
+     * @param m is the Move object you want to undo on "this board"
+     * @param playerColor is the color of the player who made the move
+     */
 	protected void undoMove(Move m, int playerColor) {
 		if (m.moveKind == Move.ADD) {
 			gameBoard[m.x1][m.y1] = EMPTY;
