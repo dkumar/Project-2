@@ -99,12 +99,13 @@ grade.
      * will create.
      */
 
-     protected boolean isLegal(Move m);
+     protected boolean isLegal(Move m, int playerColor);
      /** 
      * isLegal will return true if the given move, m, is a legal move on the 
      * the current game board based on the rules of Network and false if otherwise
      *
      * @param m the Move object that will be checked 
+     * @param playerColor is the color of the player making the Move
      * @return true if the move is lega, false otherwise.
      */
 
@@ -139,12 +140,12 @@ grade.
 
      protected void undoMove(Move m, int playerColor);
      /**
-     * undoMove will reverse the Move m on "this" game board
-     * The Move is assumed to be legal.
-     * @param m the Move object to be applied to "this" board.
-     * @param playerColor is the color of player who made Move m
+     undoMove takes a Move m and undoes the Move m on "this" game board
+     Assumes Move m is a legal.
+     If Move m is an ADD Move, undoMove increments the number of pieces of playerColor accordingly.
+     @param m is the Move object you want to undo on "this board"
+     @param playerColor is the color of the player who made the move
      */
-
     #### DList
      public DList();
      /**
