@@ -1,0 +1,31 @@
+# GitHub Command List #
+#######################
+*********THIS FILE IS STILL A WORK IN PROGRESS*********
+This is a reference guide for commands that will most likely
+be used to sync our files onto GitHub.  Anyone can add onto
+this file, just try to keep the format uniform.
+
+## Shell Commands ##
+mkdir dirname //Create a new directory
+touch filename //Create an empty file to work on
+cd dir //Move to a directory
+rm filename //Remove a file
+rmdir dir //Remove an empty directory
+
+
+## Creating a Repo  ##
+** These commands should only be used to make a NEW repo. **
+
+git init //Create a new repo in the current directory
+git remote add origin git@github.com:USERNAME/REPO-NAME.git 
+    //Create a new remote to add your repo onto github.
+
+## Getting an Existing Repo ##
+git clone git@github.com:USERNAME/REPO-NAME.git //Copy files from repo
+                                                to your computer.
+
+## Making and Getting Changes ##
+git add filename //Add a new file to the list of files to be tracked.
+git commit  -am 'comment' //Add your changes to the repo log with a
+                              comment for the change.  Be descriptive.
+git push origin master //Add your changes to GitHub.
