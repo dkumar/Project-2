@@ -21,11 +21,19 @@ git remote add origin git@github.com:USERNAME/REPO-NAME.git
     //Create a new remote to add your repo onto github.
 
 ## Getting an Existing Repo ##
-git clone git@github.com:USERNAME/REPO-NAME.git //Copy files from repo
+1. //Create a new branch on GitHub website.
+2. git clone git@github.com:USERNAME/REPO-NAME.git //Copy files from repo
                                                 to your computer.
+3. git remote add git@github.com:USERNAME/REPO-NAME.git //add remote to original repo
 
 ## Making and Getting Changes ##
-git add filename //Add a new file to the list of files to be tracked.
-git commit  -am 'comment' //Add your changes to the repo log with a
+1. git fetch upstream //Check for any updates to your files.  Always do this before you start editing.
+2. git merge upstream/master //Merge conflicting upstream changes to your own version.
+
+
+
+1. git add filename //Add a new file to the list of files to be tracked. You only need to do this for 
+    		 new files.  Existing ones just need to be committed.
+2. git commit  -am 'comment' //Add your changes to the repo log with a
                               comment for the change.  Be descriptive.
-git push origin master //Add your changes to GitHub.
+3. git push upstream master //Add your changes to GitHub.  Remeber to push to the upstream remote.  
