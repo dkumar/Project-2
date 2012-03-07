@@ -21,11 +21,12 @@ public class Board {
 	}
 
 	/*
-		makeMove takes a Move m and changes "this" board accordingly.
+		makeMove takes a Move m and int player and changes "this" board accordingly.
 		Assumes Move m is a legal move.
-		If Move m is an ADD Move, makeMove decrements the number of pieces of playerColor accordingly.
-		@Move m is the Move object to be applied to "this board"
-		@int playerColor is the color of the player making the move
+		If Move m is an ADD Move, and the player of playerColor is out of pieces, the method does nothing.
+		Else, makeMove adds the piece to the board and decrements the number of pieces of playerColor accordingly.
+		@m is the Move object to be applied to "this board"
+		@playerColor is the color of the player making the move
 	*/
 	protected void makeMove(Move m, int playerColor) {
 		if (m.moveKind == Move.ADD) {
@@ -49,9 +50,26 @@ public class Board {
 	}
 
 	/*
-		undoMove takes a Move m and undoes the Move on the game board
+		undoMove takes a Move m and undoes the Move m on "this" game board
+		Assumes Move m is a legal.
+		If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
+		@param m is the Move object you want to undo on "this board"
+		@param playerColor is the color of the player who made the move
 	*/
 	protected void undoMove(Move m, int playerColor) {
+		if (m.moveKind == Move.ADD) {
+			gameBoard[m.x1][m.y1] = EMPTY;
+			if (playerColor == WHITE) {
+				whiteAddPieces++;
+			}
+			else if (playerColor == BLACK) {
+				blackAddPieces++;
+			}
+		}
+		else if (m.moveKind == Move.STEP) {
+			gameBoard[m.x1][m.x1] = EMPTY;
+			gameBoard[m.x2][m.y2] = playerColor;
+		}
 	}
 
 //	protected DList listLegalMoves(int x, int y, int player) {
