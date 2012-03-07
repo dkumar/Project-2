@@ -128,13 +128,21 @@ grade.
      */
 
     #### Board
-     protected void makeMove(Move m, int player);
+     protected void makeMove(Move m, int playerColor);
      /**
      * makeMove will update "this" game board with the given move m for player.  
      * The Move is must be checked for legality before calling this method.  
      * 
      * @param m the Move object to be applied to "this" board.
-     * @param player the player who's making the move.
+     * @param playerColor is the color of the player who's making the move.
+     */
+
+     protected void undoMove(Move m, int playerColor);
+     /**
+     * undoMove will reverse the Move m on "this" game board
+     * The Move is assumed to be legal.
+     * @param m the Move object to be applied to "this" board.
+     * @param playerColor is the color of player who made Move m
      */
 
     #### DList
