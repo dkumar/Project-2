@@ -75,4 +75,29 @@ public class Board {
 //	protected DList listLegalMoves(int x, int y, int player) {
 //	}
 
+
+    /**
+     * isNetwork returns true if "this" board contains a network for the "player"
+     * and false if otherwise.
+     *
+     * @param player the player to check for networks.
+     * @return true if "this board has a network for "player," false if otherwise.
+     */
+    protected boolean isNetwork(int player) {
+	//Work in Progress
+    }
+
+    /**
+     * listConnections returns a DList containing all the pieces with connections
+     * to the piece in coordinates (x, y) on "this" board.  The DList contains 
+     * a list of two element arrays containing the x and y coord of the pieces.
+     * 
+     * @param x the x-coordinate of the piece.
+     * @param y the y-coordinate of the piece.
+     * @return a DList with all the pieces that make connections with the piece.
+     */
+
+    protected DList listConnections(int x, int y) {
+	//Work in Progress
+    }
 }
