@@ -72,10 +72,8 @@ grade.
 ## Modules
    ### Game Implementation
    * Implemented by Deepak Kumar
-   * Description: This module contains the internal representation of the game 
-     board.  It is responsible for making moves, determining whether moves are 
-     legal, and updating the game board.  It is also responsible for an 
-     implementation of the DList data structures for use throughout the project.
+   * Description: This module is responsible for making moves, determining whether moves are 
+     legal, and updating the game board.
    * Interface:
     #### MachinePlayer
      public MachinePlayer(int color);
@@ -128,25 +126,36 @@ grade.
      * @return true if the move is legal and applied, false if otherwise.
      */
 
+   ### Internal Game Board
+   * Implemented by Deepak Kumar
+   * Description: This module is responsible for maintaining the internal game board
+     and keeping track of where the pieces are.  
+   * Interface:
     #### Board
      protected void makeMove(Move m, int playerColor);
     /**
-    makeMove takes a Move m and int player and changes "this" board accordingly.
-    Assumes Move m is a legal move.
-    If Move m is an ADD Move, and the player of playerColor is out of pieces, the method does nothing.
-    Else, makeMove adds the piece to the board and decrements the number of pieces of playerColor accordingly.
-    @m is the Move object to be applied to "this board"
-    @playerColor is the color of the player making the move
+    * makeMove takes a Move m and int player and changes "this" board accordingly.
+    * Assumes Move m is a legal move.
+    * If Move m is an ADD Move, and the player of playerColor is out of pieces, the method does nothing.
+    * Else, makeMove adds the piece to the board and decrements the number of pieces of playerColor accordingly.
+    * @param m is the Move object to be applied to "this board"
+    * @param playerColor is the color of the player making the move
      */
 
      protected void undoMove(Move m, int playerColor);
      /**
-    undoMove takes a Move m and undoes the Move m on "this" game board
-    Assumes Move m is a legal.
-    If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
-    @param m is the Move object you want to undo on "this board"
-    @param playerColor is the color of the player who made the move
+     * undoMove takes a Move m and undoes the Move m on "this" game board
+     * Assumes Move m is a legal.
+     * If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
+     * @param m is the Move object you want to undo on "this board"
+     * @param playerColor is the color of the player who made the move
      */
+
+   ### Data Structures
+   * Implemented by Deepak Kumar
+   * Description: This module contains the DList data structure that we will be
+     using within our project.
+   * Interface:
     #### DList
      public DList();
      /**
