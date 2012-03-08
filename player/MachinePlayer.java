@@ -148,7 +148,7 @@ public class MachinePlayer extends Player {
       if((side == WHITE && (machineBoard.whiteAddPieces > 0)) || (side == BLACK && (machineBoard.blackAddPieces> 0))){
           for(int j = 0; j <= 7; j++){
 	          for(int i = 0; i <= 7; i++){
-	              if(machineBoard[i][j] == EMPTY){
+	              if(machineBoard.getSquare(i,j) == EMPTY){
 		          Move newMove = new Move(i,j);
 		          if(isLegal(newMove,side)){
 		              moves.insertBack(newMove);
@@ -161,7 +161,7 @@ public class MachinePlayer extends Player {
 	      int index = 0; //Keeps track of what index we are in our pieceCoordinates array. 
 	      for(int j = 0; j <= 7; j++){
 	          for(int i = 0; i <= 7; i++){
-	              if(machineBoard[i][j] == side){
+	              if(machineBoard.getSquare(i,j) == side){
 		              int[] coordinateArray = {i,j};
 		              pieceCoordinates[index] = coordinateArray;
 		              index++;
@@ -170,12 +170,12 @@ public class MachinePlayer extends Player {
           }        
 	      for(int k = 0; k <= 7; k++){
 	          for(int m = 0; m <= 7; m++){
-	              if(machineBoard[m][k] == EMPTY){
+	              if(machineBoard.getSquare(m,k) == EMPTY){
 		              for(int n = 0; n < pieceCoordinates.length; n++){
 		                  Move newMove = new Move(m,k,pieceCoordinates[n][0],pieceCoordinates[n][1]);
-			              if(isLegal(newMove,side)){
-			                  moves.insertBack(newMove);
-			              }
+			          if(isLegal(newMove,side)){
+			              moves.insertBack(newMove);
+			          }
 		              }    
 	              }            
 	          }        
