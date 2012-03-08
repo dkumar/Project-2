@@ -45,17 +45,20 @@ public class MachinePlayer extends Player {
   // Returns a new move by "this" player.  Internally records the move (updates
   // the internal game board) as a move by "this" player.
   public Move chooseMove() {
+      Move move;
       if(searchDepth == VARIABLE_SEARCH){
           int variableDepth;
-	      if((playerColor == WHITE && (machineBoard.whiteAddPieces > 0)) || (playerColor == BLACK && (machineBoard.blackAddPieces > 0))){
-	          variableDepth = 3;
+	  if((playerColor == WHITE && (machineBoard.whiteAddPieces > 0)) || (playerColor == BLACK && (machineBoard.blackAddPieces > 0))){
+	      variableDepth = 3;
           }else{
-	          variableDepth = 2; //We can decide later what values we should use for variableDepth depending on how fast it runs when we test.
-	      }
-	      return (minimax(playerColor,variableDepth,-2,2)).getMove();
+	      variableDepth = 2; //We can decide later what values we should use for variableDepth depending on how fast it runs when we test.
+	  }
+	  move = (minimax(playerColor,variableDepth,-2,2)).getMove();
       }else{
-          return (minimax(playerColor,searchDepth,-2,2)).getMove();
+          move = (minimax(playerColor,searchDepth,-2,2)).getMove();
       }
+      machineBoard.makeMove(move, this.playerColor);
+      return move;
   } 
   
   /**
