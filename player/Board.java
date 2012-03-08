@@ -49,12 +49,12 @@ public class Board {
 		}
 	}
 
-	/*
-		undoMove takes a Move m and undoes the Move m on "this" game board
-		Assumes Move m is a legal.
-		If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
-		@param m is the Move object you want to undo on "this board"
-		@param playerColor is the color of the player who made the move
+   /**
+	* undoMove takes a Move m and undoes the Move m on "this" game board
+	* Assumes Move m is a legal.
+	* If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
+	* @param m is the Move object you want to undo on "this board"
+	* @param playerColor is the color of the player who made the move
 	*/
 	protected void undoMove(Move m, int playerColor) {
 		if (m.moveKind == Move.ADD) {
@@ -72,7 +72,14 @@ public class Board {
 		}
 	}
 
-//	protected DList listLegalMoves(int x, int y, int player) {
-//	}
+	/**
+	 * getSquare takes an int x and int y and returns the piece in that square
+	 * @param x is the x-coordinate of the square
+	 * @param y is the y-coordinate of the square
+	 * @return int that reflects the square's contents (either Board.WHITE, Board.BLACK, Board.EMPTY)
+	 */
+	 protected int getSquare(int x, int y) {
+		 return gameBoard[x][y];
+	 }
 
 }

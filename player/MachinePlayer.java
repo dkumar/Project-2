@@ -8,8 +8,9 @@ package player;
  */
 public class MachinePlayer extends Player {
 
-  private int playerColor;
-  private Board machineBoard;
+  //change these to private
+  protected int playerColor;
+  protected Board machineBoard;
 
 
   // Creates a machine player with the given color.  Color is either 0 (black)
@@ -22,8 +23,7 @@ public class MachinePlayer extends Player {
   // Creates a machine player with the given color and search depth.  Color is
   // either 0 (black) or 1 (white).  (White has the first move.)
   public MachinePlayer(int color, int searchDepth) {
-	  this.playerColor = color;
-	  machineBoard = new Board();
+	  this(color);
   }
 
   // Returns a new move by "this" player.  Internally records the move (updates
@@ -69,7 +69,7 @@ public class MachinePlayer extends Player {
      * @param playerColor is the color of the player making the Move
      * @return true if the move is legal false otherwise.
   */
-  protected boolean isLegal(Move m, int playerColor) {
+  private boolean isLegal(Move m, int playerColor) {
 	  //cluster rule not implemented yet
 	  //run through 2 for loops or check corners
 	  //isLegal private?
@@ -79,7 +79,7 @@ public class MachinePlayer extends Player {
 	  for (int i = 0; i <= 7; i++) {
 		  if (((playerColor == Board.BLACK) && ((m.x1 == 0 && m.y1 == i) || (m.x1 == 7 && m.y1 == i)))  ||	//BLACK cannot place pieces in: 01-06, 71-76
 		  ((playerColor == Board.WHITE) && ((m.x1 == i && m.y1 == 0) || (m.x1 == i && m.y1 == 7)))) {		//WHITE cannot place pieces in: 10-60, 17-67
-		  return false;																					//Neither can have pieces in 00, 07, 70, 77 (which code checks for)
+		  return false;																						//Neither can have pieces in 00, 07, 70, 77 (which code checks for)
 		  }
 	  }
 	  return true;
@@ -97,4 +97,6 @@ public class MachinePlayer extends Player {
   private int checkNeighbor(int x, int y, int playerColor) {
 	  return 0;
   }
+
+  private
 }
