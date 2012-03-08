@@ -69,13 +69,12 @@ grade.
    * DListNode
    * InvalidNodeException
    * Move
+   * ScoredMove
 ## Modules
    ### Game Implementation
    * Implemented by Deepak Kumar
-   * Description: This module contains the internal representation of the game 
-     board.  It is responsible for making moves, determining whether moves are 
-     legal, and updating the game board.  It is also responsible for an 
-     implementation of the DList data structures for use throughout the project.
+   * Description: This module is responsible for making moves, determining whether moves are 
+     legal, and updating the game board.
    * Interface:
     #### MachinePlayer
      public MachinePlayer(int color);
@@ -99,14 +98,14 @@ grade.
      * will create.
      */
 
-     protected boolean isLegal(Move m, int playerColor);
+     private boolean isLegal(Move m, int playerColor);
      /** 
      * isLegal will return true if the given move, m, is a legal move on the 
      * the current game board based on the rules of Network and false if otherwise
      *
      * @param m the Move object that will be checked 
      * @param playerColor is the color of the player making the Move
-     * @return true if the move is lega, false otherwise.
+     * @return true if the move is legal, false otherwise.
      */
 
      public boolean opponentMove(Move m);
@@ -128,24 +127,44 @@ grade.
      * @return true if the move is legal and applied, false if otherwise.
      */
 
+   ### Internal Game Board
+   * Implemented by Deepak Kumar
+   * Description: This module is responsible for maintaining the internal game board
+     and keeping track of where the pieces are.  
+   * Interface:
     #### Board
      protected void makeMove(Move m, int playerColor);
-     /**
-     * makeMove will update "this" game board with the given move m for player.  
-     * The Move is must be checked for legality before calling this method.  
-     * 
-     * @param m the Move object to be applied to "this" board.
-     * @param playerColor is the color of the player who's making the move.
+    /**
+    * makeMove takes a Move m and int player and changes "this" board accordingly.
+    * Assumes Move m is a legal move.
+    * If Move m is an ADD Move, and the player of playerColor is out of pieces, the method does nothing.
+    * Else, makeMove adds the piece to the board and decrements the number of pieces of playerColor accordingly.
+    * @param m is the Move object to be applied to "this board"
+    * @param playerColor is the color of the player making the move
      */
 
      protected void undoMove(Move m, int playerColor);
      /**
-     undoMove takes a Move m and undoes the Move m on "this" game board
-     Assumes Move m is a legal.
-     If Move m is an ADD Move, undoMove increments the number of pieces of playerColor accordingly.
-     @param m is the Move object you want to undo on "this board"
-     @param playerColor is the color of the player who made the move
+     * undoMove takes a Move m and undoes the Move m on "this" game board
+     * Assumes Move m is a legal.
+     * If Move m is an ADD Move, undoMove removes the piece from the board and increments the number of pieces of playerColor accordingly.
+     * @param m is the Move object you want to undo on "this board"
+     * @param playerColor is the color of the player who made the move
      */
+
+     protected int getSquare(int x, int y);
+     /**
+     * getSquare takes an int x and int y and returns the piece in that square
+     * @param x is the x-coordinate of the square
+     * @param y is the y-coordinate of the square
+     * @return int that reflects the square's contents (either Board.WHITE, Board.BLACK, Board.EMPTY)
+     */
+
+   ### Data Structures
+   * Implemented by Deepak Kumar
+   * Description: This module contains the DList data structure that we will be
+     using within our project.
+   * Interface:
     #### DList
      public DList();
      /**
@@ -308,6 +327,30 @@ grade.
      * @return a Move object with the best chances of winning the game.
      */
 
+    #### ScoredMove
+     public void setScore(float newScore);
+     /**
+     * setScore sets the score corresponding to the move for this ScoredMove.
+     * @param newScore is the new floating point score of this ScoredMove.
+     */
+
+     public float getScore();
+     /**
+     * getScore returns the score of this ScoredMove.
+     * @return a floating point score for ScoredMove's move.
+     */
+
+     public void setMove(Move newMove);
+     /**
+     * setMove sets the move corresponding to a score for this ScoredMove.
+     * @param newMove is the new move for this current board who we have given a score.
+     */
+      
+     public Move getMove();
+     /**
+     * getMove returns the move of this ScoredMove.
+     * @return a move for this current board.
+     */
    ### Network Identification
    * Implemented by Jene Li
    * Description: This module contains the methods used to identify whether or not
