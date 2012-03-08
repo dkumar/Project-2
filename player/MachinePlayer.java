@@ -189,11 +189,11 @@ public class MachinePlayer extends Player {
   // illegal, returns false without modifying the internal state of "this"
   // player.  This method allows your opponents to inform you of their moves.
   public boolean opponentMove(Move m) {
-	  if (!isLegal(m, (this.playerColor+1)%2)) {  //call isLegal with Move and other player's color
+	  if (!isLegal(m, this.opponentColor) {  //call isLegal with Move and other player's color
 		  return false;
 	  }
 	  else {
-		  machineBoard.makeMove(m, (int) (this.playerColor+1)%2);
+		  machineBoard.makeMove(m, this.opponentColor);
 		  return true;
 	  }
   }
