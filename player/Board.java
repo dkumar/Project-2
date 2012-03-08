@@ -1,9 +1,9 @@
 package player;
 
 public class Board {
-	public final static int Board.EMPTY = -1;
-	public final static int Board.BLACK = 0;
-	public final static int Board.WHITE = 1;
+	public final static int EMPTY = -1;
+	public final static int BLACK = 0;
+	public final static int WHITE = 1;
 
 	protected int[][] gameBoard = new int[8][8];
 	protected int whiteAddPieces = 10;   //Machine player's pieces
