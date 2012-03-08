@@ -98,14 +98,14 @@ grade.
      * will create.
      */
 
-     protected boolean isLegal(Move m, int playerColor);
+     private boolean isLegal(Move m, int playerColor);
      /** 
      * isLegal will return true if the given move, m, is a legal move on the 
      * the current game board based on the rules of Network and false if otherwise
      *
      * @param m the Move object that will be checked 
      * @param playerColor is the color of the player making the Move
-     * @return true if the move is lega, false otherwise.
+     * @return true if the move is legal, false otherwise.
      */
 
      public boolean opponentMove(Move m);
