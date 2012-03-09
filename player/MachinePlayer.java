@@ -234,6 +234,33 @@ public class MachinePlayer extends Player {
 		  }
 	  }
 	  int neighbors = checkNeighbor(m.x1, m.y1, playerColor);
+	  for (int i = 0; i <= 4; i++) {
+	      int x = m.x1;
+		  int y = m.y1;
+
+		  while (x>= 0 && x<=7 && y>=0 && y<=7) {
+			  if (getSquare(x, y) == playerColor) {
+				  neighbors++;
+			  }
+			  switch (i):
+			  case 0:		//Diagonal Up-Left
+			  	x--;
+			  	y--;
+			  	break;
+			  case 1:		//Diagonal Down-Left
+			  	x--;
+			  	y++;
+			  	break;
+			  case 2:		//Diagonal Up-Right
+			  	x++;
+			  	y--;
+			  	break;
+			  case 3:		//Diagonal Down-Right
+			  	x++;
+			  	y++;
+			  	break;
+		  }
+	  }
 
 	  return true;
   }
