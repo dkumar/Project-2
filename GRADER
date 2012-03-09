@@ -328,29 +328,30 @@ grade.
      */
 
     #### ScoredMove
-     public void setScore(float newScore);
+     protected void setScore(float newScore);
      /**
      * setScore sets the score corresponding to the move for this ScoredMove.
      * @param newScore is the new floating point score of this ScoredMove.
      */
 
-     public float getScore();
+     protected float getScore();
      /**
      * getScore returns the score of this ScoredMove.
      * @return a floating point score for ScoredMove's move.
      */
 
-     public void setMove(Move newMove);
+     protected void setMove(Move newMove);
      /**
      * setMove sets the move corresponding to a score for this ScoredMove.
      * @param newMove is the new move for this current board who we have given a score.
      */
       
-     public Move getMove();
+     protected Move getMove();
      /**
      * getMove returns the move of this ScoredMove.
      * @return a move for this current board.
      */
+
    ### Network Identification
    * Implemented by Jene Li
    * Description: This module contains the methods used to identify whether or not
