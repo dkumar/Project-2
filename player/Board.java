@@ -105,6 +105,16 @@ public class Board {
 		return false;
 	//Work in Progress
     }
+    
+    /**
+     * getSquare takes an int x and int y and returns the piece in that square
+     * @param x is the x-coordinate of the square
+     * @param y is the y-coordinate of the square
+     * @return int that reflects the square's contents (either Board.WHITE, Board.BLACK, Board.EMPTY)
+     */
+    protected int getSquare(int x, int y) {
+    	return gameBoard[x][y];
+    }
 
     /**
      * listConnections returns a DList containing all the pieces with connections
