@@ -1,6 +1,7 @@
 /* MachinePlayer.java */
 
 package player;
+import list.*;
 
 /**
  *  An implementation of an automatic Network player.  Keeps track of moves
@@ -19,10 +20,10 @@ public class MachinePlayer extends Player {
   // Creates a machine player with the given color.  Color is either 0 (black)
   // or 1 (white).  (White has the first move.)
   public MachinePlayer(int color) {
-      if(color == WHITE){
-          opponentColor = BLACK;
+      if(color == Board.WHITE){
+          opponentColor = Board.BLACK;
       }else{
-          opponentColor = WHITE;
+          opponentColor = Board.WHITE;
       }
       this.playerColor = color;
       machineBoard = new Board();
@@ -32,10 +33,10 @@ public class MachinePlayer extends Player {
   // Creates a machine player with the given color and search depth.  Color is
   // either 0 (black) or 1 (white).  (White has the first move.)
   public MachinePlayer(int color, int searchDepth) {
-      if(color == WHITE){
-          opponentColor = BLACK;
+      if(color == Board.WHITE){
+          opponentColor = Board.BLACK;
       }else{
-          opponentColor = WHITE;
+          opponentColor = Board.WHITE;
       }
       this.playerColor = color;
       machineBoard = new Board();
@@ -48,7 +49,7 @@ public class MachinePlayer extends Player {
       Move move;
       if(searchDepth == VARIABLE_SEARCH){
           int variableDepth;
-	  if((playerColor == WHITE && (machineBoard.whiteAddPieces > 0)) || (playerColor == BLACK && (machineBoard.blackAddPieces > 0))){
+	  if((playerColor == Board.WHITE && (machineBoard.whiteAddPieces > 0)) || (playerColor == Board.BLACK && (machineBoard.blackAddPieces > 0))){
 	      variableDepth = 3;
           }else{
 	      variableDepth = 2; //We can decide later what values we should use for variableDepth depending on how fast it runs when we test.
@@ -75,24 +76,24 @@ public class MachinePlayer extends Player {
       ScoredMove reply;
       int otherPlayer;
 
-      if(side == BLACK){
-          otherPlayer = WHITE;
+      if(side == Board.BLACK){
+          otherPlayer = Board.WHITE;
       }else{
-	      otherPlayer = BLACK;
+	      otherPlayer = Board.BLACK;
       }
 
-      boolean whiteNetwork = machineBoard.isNetwork(WHITE);
-      boolean blackNetwork = machineBoard.isNetwork(BLACK);
+      boolean whiteNetwork = machineBoard.isNetwork(Board.WHITE);
+      boolean blackNetwork = machineBoard.isNetwork(Board.BLACK);
       if(depth <= 0 || whiteNetwork || blackNetwork){
           ScoredMove newBest = new ScoredMove();
           if(whiteNetwork){
-	          if(WHITE == playerColor){
+	          if(Board.WHITE == playerColor){
 	              newBest.setScore(COMPUTER_WIN);
 	          }else{
 	              newBest.setScore(HUMAN_WIN);
 	          }
           }else if(blackNetwork){
-	          if(BLACK == playerColor){
+	          if(Board.BLACK == playerColor){
 	              newBest.setScore(COMPUTER_WIN);
 	          }else{
 		          newBest.setScore(HUMAN_WIN);
@@ -145,10 +146,10 @@ public class MachinePlayer extends Player {
    */
   private DList legalMoves(int side){
       DList moves = new DList();
-      if((side == WHITE && (machineBoard.whiteAddPieces > 0)) || (side == BLACK && (machineBoard.blackAddPieces> 0))){
+      if((side == Board.WHITE && (machineBoard.whiteAddPieces > 0)) || (side == Board.BLACK && (machineBoard.blackAddPieces> 0))){
           for(int j = 0; j <= 7; j++){
 	          for(int i = 0; i <= 7; i++){
-	              if(machineBoard.getSquare(i,j) == EMPTY){
+	              if(machineBoard.getSquare(i,j) == Board.EMPTY){
 		          Move newMove = new Move(i,j);
 		          if(isLegal(newMove,side)){
 		              moves.insertBack(newMove);
@@ -170,7 +171,7 @@ public class MachinePlayer extends Player {
           }
 	      for(int k = 0; k <= 7; k++){
 	          for(int m = 0; m <= 7; m++){
-	              if(machineBoard.getSquare(m,k) == EMPTY){
+	              if(machineBoard.getSquare(m,k) == Board.EMPTY){
 		              for(int n = 0; n < pieceCoordinates.length; n++){
 		                  Move newMove = new Move(m,k,pieceCoordinates[n][0],pieceCoordinates[n][1]);
 			          if(isLegal(newMove,side)){
@@ -189,7 +190,7 @@ public class MachinePlayer extends Player {
   // illegal, returns false without modifying the internal state of "this"
   // player.  This method allows your opponents to inform you of their moves.
   public boolean opponentMove(Move m) {
-	  if (!isLegal(m, this.opponentColor) {  //call isLegal with Move and other player's color
+	  if (!isLegal(m, this.opponentColor)) {  //call isLegal with Move and other player's color
 		  return false;
 	  }
 	  else {
@@ -221,19 +222,19 @@ public class MachinePlayer extends Player {
      * @param playerColor is the color of the player making the Move
      * @return true if the move is legal false otherwise.
      */
-  protected boolean isLegal(Move m, int playerColor) {
+  private boolean isLegal(Move m, int playerColor) {
 	  //cluster rule not implemented yet
-	  //run through 2 for loops or check corners
-	  //isLegal private?
-	  if (machineBoard.gameBoard[m.x1][m.x2] != Board.EMPTY) {  			//cell cannot be occupied
+	  if (machineBoard.getSquare(m.x1, m.y1) != Board.EMPTY) {  			//cell cannot be occupied
 		  return false;
 	  }
 	  for (int i = 0; i <= 7; i++) {
-		  if (((playerColor == Board.BLACK) && ((m.x1 == 0 && m.y1 == i) || (m.x1 == 7 && m.y1 == i)))  ||	//BLACK cannot place pieces in: 01-06, 71-76
-		  ((playerColor == Board.WHITE) && ((m.x1 == i && m.y1 == 0) || (m.x1 == i && m.y1 == 7)))) {		//WHITE cannot place pieces in: 10-60, 17-67
+		  if (((playerColor == Board.BLACK) && ((m.x1 == 0 && m.y1 == i) || (m.x1 == 7 && m.y1 == i)))  ||	//Board.BLACK cannot place pieces in: 01-06, 71-76
+		  ((playerColor == Board.WHITE) && ((m.x1 == i && m.y1 == 0) || (m.x1 == i && m.y1 == 7)))) {		//Board.WHITE cannot place pieces in: 10-60, 17-67
 		      return false;																					//Neither can have pieces in 00, 07, 70, 77 (which code checks for)
 		  }
 	  }
+	  int neighbors = checkNeighbor(m.x1, m.y1, playerColor);
+
 	  return true;
   }
 
@@ -247,6 +248,31 @@ public class MachinePlayer extends Player {
      * @returns the number of neighbors of a square on the game board with coordinates (x,y)
      */
   private int checkNeighbor(int x, int y, int playerColor) {
-	  return 0;
+	  int neighbors = 0;
+	  if (machineBoard.getSquare(x-1, y-1) == playerColor) {
+		  neighbors++;
+	  }
+	  if (machineBoard.getSquare(x-1, y) == playerColor) {
+		  neighbors++;
+	  }
+	  if (machineBoard.getSquare(x-1, y+1) == playerColor) {
+		  neighbors++;
+	  }
+	  if (machineBoard.getSquare(x, y+1) == playerColor) {
+		  neighbors++;
+	  }
+	  if (machineBoard.getSquare(x+1, y+1) == playerColor) {
+		  neighbors++;
+	  }
+	  if (machineBoard.getSquare(x+1, y) == playerColor) {
+		  neighbors++;
+	  }
+	  if (machineBoard.getSquare(x+1, y-1) == playerColor) {
+		  neighbors++;
+	  }
+	  if (machineBoard.getSquare(x, y-1) == playerColor) {
+		  neighbors++;
+	  }
+	  return neighbors;
   }
 }

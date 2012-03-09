@@ -1,11 +1,12 @@
 package player;
+import list.*;
 
 public class Board {
-	public final static int Board.EMPTY = -1;
-	public final static int Board.BLACK = 0;
-	public final static int Board.WHITE = 1;
+	public final static int EMPTY = -1;
+	public final static int BLACK = 0;
+	public final static int WHITE = 1;
 
-	protected int[][] gameBoard = new int[8][8];
+	private int[][] gameBoard = new int[8][8];
 	protected int whiteAddPieces = 10;   //Machine player's pieces
 	protected int blackAddPieces = 10;
 
@@ -67,13 +68,30 @@ public class Board {
 			}
 		}
 		else if (m.moveKind == Move.STEP) {
-			gameBoard[m.x1][m.x1] = Board.EMPTY;
+			gameBoard[m.x1][m.y1] = Board.EMPTY;
 			gameBoard[m.x2][m.y2] = playerColor;
 		}
 	}
 
-//	protected DList listLegalMoves(int x, int y, int player) {
-//	}
+	/**
+	 * getSquare takes an int x and int y and returns the piece in that square
+	 * If sqaure (x, y) are invalid coordinates, getSquare returns which is always Board.EMPTY
+	 * @param x is the x-coordinate of the square
+	 * @param y is the y-coordinate of the square
+	 * @return int that reflects the square's contents (either Board.WHITE, Board.BLACK, Board.EMPTY)
+	 */
+	 protected int getSquare(int x, int y) {
+		 if (x < 0 || x >= 8 || y <0 || y >= 8) {
+			 return Board.EMPTY;
+		 }
+		 else {
+			 return gameBoard[x][y];
+		}
+	 }
+
+	protected DList listLegalMoves(int x, int y, int player) {
+		return new DList();
+	}
 
 
     /**
@@ -84,6 +102,7 @@ public class Board {
      * @return true if "this board has a network for "player," false if otherwise.
      */
     protected boolean isNetwork(int player) {
+		return false;
 	//Work in Progress
     }
 
@@ -99,5 +118,6 @@ public class Board {
 
     protected DList listConnections(int x, int y) {
 	//Work in Progress
+	return new DList();
     }
 }
