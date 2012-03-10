@@ -2,6 +2,6 @@
 
 package test;
 
-protected interface TestInterface {
-    protected boolean testModule();
+public interface TestInterface {
+    public boolean testModule();
 }

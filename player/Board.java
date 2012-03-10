@@ -81,27 +81,12 @@ public class Board {
 	 * @return int that reflects the square's contents (either Board.WHITE, Board.BLACK, Board.EMPTY)
 	 */
 	 protected int getSquare(int x, int y) {
-		 if (x < 0 || x >= 8 || y <0 || y >= 8) {
+		 if (x<0 || x>7 || y<0 || y>8) {
 			 return Board.EMPTY;
 		 }
 		 else {
 			 return gameBoard[x][y];
 		}
-	 }
-
-	 /**
-	  * isValidCoordinate takes an int x and int y and returns if that is a valid coordinate on the game board
-	  * @param x is the x-coordinate
-	  * @param y is the y-coordinate
-	  * @return true if x and y are a valid coordinate, false otherwise
-	  */
-	 protected boolean isValidCoordinate(int x, int y) {
-		 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-			 return true;
-		 }
-		 else {
-			 return false;
-		 }
 	 }
 
 	protected DList listLegalMoves(int x, int y, int player) {

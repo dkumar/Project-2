@@ -33,13 +33,7 @@ public class MachinePlayer extends Player {
   // Creates a machine player with the given color and search depth.  Color is
   // either 0 (black) or 1 (white).  (White has the first move.)
   public MachinePlayer(int color, int searchDepth) {
-      if(color == Board.WHITE){
-          opponentColor = Board.BLACK;
-      }else{
-          opponentColor = Board.WHITE;
-      }
-      this.playerColor = color;
-      machineBoard = new Board();
+	  this(color);
       this.searchDepth = searchDepth;
   }
 
@@ -223,8 +217,13 @@ public class MachinePlayer extends Player {
      * @return true if the move is legal false otherwise.
      */
   private boolean isLegal(Move m, int playerColor) {
-	  //cluster rule not implemented yet
 	  if (machineBoard.getSquare(m.x1, m.y1) != Board.EMPTY) {  			//cell cannot be occupied
+		  return false;
+	  }
+	  if ((m.moveKind == Move.ADD) && ((playerColor == Board.WHITE && machineBoard.whiteAddPieces<=0) || (playerColor == Board.BLACK && machineBoard.blackAddPieces<=0))) {
+		  return false;
+	  }
+	  if ((m.moveKind == Move.STEP) && ((playerColor == Board.WHITE && machineBoard.whiteAddPieces>0) || (playerColor == Board.BLACK && machineBoard.blackAddPieces>0))) {
 		  return false;
 	  }
 	  for (int i = 0; i <= 7; i++) {
@@ -233,36 +232,43 @@ public class MachinePlayer extends Player {
 		      return false;																					//Neither can have pieces in 00, 07, 70, 77 (which code checks for)
 		  }
 	  }
+
+	  //cluster rule not implemented yet
 	  int neighbors = checkNeighbor(m.x1, m.y1, playerColor);
 	  for (int i = 0; i <= 4; i++) {
 	      int x = m.x1;
 		  int y = m.y1;
 
 		  while (x>= 0 && x<=7 && y>=0 && y<=7) {
-			  if (getSquare(x, y) == playerColor) {
+			  switch (i) {
+			   	  case 0:		//Diagonal Up-Left
+					x--;
+					y--;
+					break;
+				  case 1:		//Diagonal Down-Left
+					x--;
+					y++;
+					break;
+				  case 2:		//Diagonal Up-Right
+					x++;
+					y--;
+					break;
+				  case 3:		//Diagonal Down-Right
+					x++;
+					y++;
+					break;
+			  }
+			  if (machineBoard.getSquare(x, y) == playerColor) {
 				  neighbors++;
 			  }
-			  switch (i):
-			  case 0:		//Diagonal Up-Left
-			  	x--;
-			  	y--;
-			  	break;
-			  case 1:		//Diagonal Down-Left
-			  	x--;
-			  	y++;
-			  	break;
-			  case 2:		//Diagonal Up-Right
-			  	x++;
-			  	y--;
-			  	break;
-			  case 3:		//Diagonal Down-Right
-			  	x++;
-			  	y++;
-			  	break;
 		  }
 	  }
-
-	  return true;
+	  if (neighbors >= 2) {
+		  return false;
+	  }
+	  else {
+		  return true;
+	  }
   }
 
     /**
