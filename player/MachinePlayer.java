@@ -223,7 +223,10 @@ public class MachinePlayer extends Player {
      * @return true if the move is legal false otherwise.
      */
   private boolean isLegal(Move m, int playerColor) {
-	  if (machineBoard.getSquare(m.x1, m.y1) != Board.EMPTY) {  			//cell cannot be occupied
+	  if (m.x1<0 || m.x1>7 || m.y1<0 || m.y1>7 || m.x2<0 || m.x2>7 || m.y2<0 || m.y2>7) {							//illegal coordinates
+		  return false;
+	  }
+	  if (machineBoard.getSquare(m.x1, m.y1) != Board.EMPTY) {  													//cell cannot be occupied
 		  return false;
 	  }
 	  if ((m.moveKind == Move.ADD) && ((playerColor == Board.WHITE && machineBoard.whiteAddPieces<=0) || (playerColor == Board.BLACK && machineBoard.blackAddPieces<=0))) {
@@ -239,36 +242,7 @@ public class MachinePlayer extends Player {
 		  }
 	  }
 
-	  //cluster rule not implemented yet
-	  int neighbors = checkNeighbor(m.x1, m.y1, playerColor);
-	  for (int i = 0; i <= 4; i++) {
-	      int x = m.x1;
-		  int y = m.y1;
-
-		  while (x>= 0 && x<=7 && y>=0 && y<=7) {
-			  switch (i) {
-			   	  case 0:		//Diagonal Up-Left
-					x--;
-					y--;
-					break;
-				  case 1:		//Diagonal Down-Left
-					x--;
-					y++;
-					break;
-				  case 2:		//Diagonal Up-Right
-					x++;
-					y--;
-					break;
-				  case 3:		//Diagonal Down-Right
-					x++;
-					y++;
-					break;
-			  }
-			  if (machineBoard.getSquare(x, y) == playerColor) {
-				  neighbors++;
-			  }
-		  }
-	  }
+	  int neighbors = checkNeighbor(m.x1, m.x2, playerColor);
 	  if (neighbors >= 2) {
 		  return false;
 	  }
@@ -279,8 +253,7 @@ public class MachinePlayer extends Player {
 
     /**
      * checkNeighbor will return the number of pieces of color playerColor that neighbor a square on the game board with coordinates (x,y).
-     * A piece neighbors a square if it is connected to the square orthogonally or diagonally.
-     * It ignores any pieces that are not of color playerColor
+     * A piece neighbors a square if it is connected to the square orthogonally and is the same color as playerColor
      * @param x is the x-coordinate of the game board square
      * @param y is the y-coorindate of the game board square
      * @param playerColor is the color of pieces to search for
@@ -290,27 +263,35 @@ public class MachinePlayer extends Player {
 	  int neighbors = 0;
 	  if (machineBoard.getSquare(x-1, y-1) == playerColor) {
 		  neighbors++;
+		  neighbors += checkNeighbor(x-1, y-1, playerColor);
 	  }
 	  if (machineBoard.getSquare(x-1, y) == playerColor) {
 		  neighbors++;
+		  neighbors += checkNeighbor(x-1, y, playerColor);
 	  }
 	  if (machineBoard.getSquare(x-1, y+1) == playerColor) {
 		  neighbors++;
+		  neighbors += checkNeighbor(x-1, y+1, playerColor);
 	  }
 	  if (machineBoard.getSquare(x, y+1) == playerColor) {
 		  neighbors++;
+		  neighbors+= checkNeighbor(x, y+1, playerColor);
 	  }
 	  if (machineBoard.getSquare(x+1, y+1) == playerColor) {
 		  neighbors++;
+		  neighbors += checkNeighbor(x+1, y+1, playerColor);
 	  }
 	  if (machineBoard.getSquare(x+1, y) == playerColor) {
 		  neighbors++;
+		  neighbors += checkNeighbor(x+1, y, playerColor);
 	  }
 	  if (machineBoard.getSquare(x+1, y-1) == playerColor) {
 		  neighbors++;
+		  neighbors += checkNeighbor(x+1, y-1, playerColor);
 	  }
 	  if (machineBoard.getSquare(x, y-1) == playerColor) {
 		  neighbors++;
+		  neighbors+= checkNeighbor(x, y-1, playerColor);
 	  }
 	  return neighbors;
   }

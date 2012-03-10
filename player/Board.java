@@ -81,7 +81,7 @@ public class Board {
 	 * @return int that reflects the square's contents (either Board.WHITE, Board.BLACK, Board.EMPTY)
 	 */
 	 protected int getSquare(int x, int y) {
-		 if (x<0 || x>7 || y<0 || y>8) {
+		 if (x<0 || x>7 || y<0 || y>7) {
 			 return Board.EMPTY;
 		 }
 		 else {
