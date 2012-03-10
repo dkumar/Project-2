@@ -70,7 +70,7 @@ public class MachinePlayer extends Player {
  * @param beta is the score the opponent knows it can achieve.
  * @return a ScoredMove which holds the highest scoring move.
  */
-  private ScoredMove minimax(int side, int depth, double alpha, double beta) {
+  private ScoredMove minimax(int side, int depth, float alpha, float beta) {
       ScoredMove myBest = new ScoredMove();
       ScoredMove reply;
       int otherPlayer;
