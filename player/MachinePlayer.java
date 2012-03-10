@@ -33,7 +33,13 @@ public class MachinePlayer extends Player {
   // Creates a machine player with the given color and search depth.  Color is
   // either 0 (black) or 1 (white).  (White has the first move.)
   public MachinePlayer(int color, int searchDepth) {
-	  this(color);
+	  if(color == Board.WHITE){
+		  opponentColor = Board.BLACK;
+	  }else{
+		  opponentColor = Board.WHITE;
+	  }
+	  this.playerColor = color;
+	  machineBoard = new Board();
       this.searchDepth = searchDepth;
   }
 
@@ -307,5 +313,9 @@ public class MachinePlayer extends Player {
 		  neighbors++;
 	  }
 	  return neighbors;
+  }
+
+  protected float evaluateBoard(Board b) {
+	  return 0;
   }
 }
