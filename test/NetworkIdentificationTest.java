@@ -2,5 +2,5 @@
 
 package test;
 
-protected class NetworkIdentificationTest implements TestInterface {
+public class NetworkIdentificationTest implements TestInterface {
 }

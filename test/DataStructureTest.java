@@ -2,5 +2,5 @@
 
 package test;
 
-protected class DataStructureTest implements TestInterface {
+public class DataStructureTest implements TestInterface {
 }

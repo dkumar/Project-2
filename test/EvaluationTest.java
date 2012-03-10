@@ -2,5 +2,5 @@
 
 package test;
 
-protected class EvaluationTest implements TestInterface {
+public class EvaluationTest implements TestInterface {
 }

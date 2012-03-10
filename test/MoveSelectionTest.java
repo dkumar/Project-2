@@ -2,5 +2,5 @@
 
 package test;
 
-protected class MoveSelectionTest implements TestInterface {
+public class MoveSelectionTest implements TestInterface {
 }
