@@ -241,13 +241,14 @@ public class MachinePlayer extends Player {
 		      return false;																					//Neither can have pieces in 00, 07, 70, 77 (which code checks for)
 		  }
 	  }
-		int neighbors = 0;
-	  if (neighbors >= 2) {
+
+	  if(clusterCheck(m.x1, m.y1, playerColor)) {
 		  return false;
 	  }
 	  else {
 		  return true;
 	  }
+
   }
 
    /**
