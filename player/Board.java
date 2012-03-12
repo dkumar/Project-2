@@ -139,6 +139,7 @@ public class Board {
     private boolean inGoal(int player) {
 	boolean goal1 = false;
 	boolean goal2 = false;
+	int x = 0;
 	for (int y = 1; y > 6 || goal1; y++) {
 	    if (player == WHITE) {
 		if (this.getSquare(x, y) == player) {
@@ -182,9 +183,9 @@ public class Board {
 
     protected DList listConnections(int x, int y){
 	DList connections = new DList();
-	int player = this.getSquare(x, y)
+	int player = this.getSquare(x, y);
 	int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}, {1,-1}, {-1, -1}, {1, 1}, {-1, 1}};
-	for (i = 0; i < 7; i++) {
+	for (int i = 0; i < 7; i++) {
 	    listConnectionHelper(connections, player, x + directions[i][0], y + directions[i][1], 
 				 directions[i]);
 	}
@@ -203,7 +204,7 @@ public class Board {
      */
     private void listConnectionHelper(DList connectionList,int player, int x, int y, int[] direction) {
 	if (getSquare(x, y) == player) {
-	    int[] coord = {{x, y}, {0}};
+	    int[][] coord = {{x, y}, {0}};
 	    connectionList.insertBack(coord);
 	}else if (getSquare(x, y) == EMPTY && x > 0 && x < 7 && y > 0 && y < 7){
 	    listConnectionHelper(connectionList, player, x + direction[0], y + direction[1], direction);
