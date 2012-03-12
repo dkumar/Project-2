@@ -172,7 +172,8 @@ public class Board {
     /**
      * listConnections returns a DList containing all the pieces with connections
      * to the piece in coordinates (x, y) on "this" board.  The DList contains
-     * a list of two element arrays containing the x and y coord of the pieces.
+     * a list of two element arrays containing another two element array of the form
+     * {x, y} in index 0 and a marker integer, default 0, for DFS in index 1.
      *
      * @param x the x-coordinate of the piece.
      * @param y the y-coordinate of the piece.
@@ -202,7 +203,7 @@ public class Board {
      */
     private void listConnectionHelper(DList connectionList,int player, int x, int y, int[] direction) {
 	if (getSquare(x, y) == player) {
-	    int[] coord = {x, y};
+	    int[] coord = {{x, y}, {0}};
 	    connectionList.insertBack(coord);
 	}else if (getSquare(x, y) == EMPTY && x > 0 && x < 7 && y > 0 && y < 7){
 	    listConnectionHelper(connectionList, player, x + direction[0], y + direction[1], direction);
