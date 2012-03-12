@@ -75,7 +75,7 @@ public class Board {
 
 	/**
 	 * getSquare takes an int x and int y and returns the piece in that square
-	 * If sqaure (x, y) are invalid coordinates, getSquare returns which is always Board.EMPTY
+	 * If square (x, y) are invalid coordinates, getSquare returns which is always Board.EMPTY
 	 * @param x is the x-coordinate of the square
 	 * @param y is the y-coordinate of the square
 	 * @return int that reflects the square's contents (either Board.WHITE, Board.BLACK, Board.EMPTY)
@@ -99,11 +99,74 @@ public class Board {
      * and false if otherwise.
      *
      * @param player the player to check for networks.
-     * @return true if "this board has a network for "player," false if otherwise.
+     * @return true if "this" board has a network for "player," false if otherwise.
      */
     protected boolean isNetwork(int player) {
+	if (!enoughPieces(player) || !inGoal(player)) {
+	    return false;
+	}else {
+	}
+	    
+    }
+    
+    /**
+     * enoughPieces retruns true if "this" board has enough pieces to make a network.
+     *
+     * @param player the player to check for qualifying networks.
+     * @return true if board qualifies for a network for player, false if otherise.
+     */
+    private boolean enoughPieces(int player) {
+	if (player == WHITE) {
+	    if (whiteAddPieces > 4) {
 		return false;
-	//Work in Progress
+	    }
+	}else {
+	    if (blackAddPieces > 4) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
+
+    /** 
+     * inGoal determines if there are pieces in both goals for a given player.
+     *
+     * @param player is the player to check the goals for.
+     * @return true if there are goals on both goals, false if otherwise.
+     */
+
+    private boolean inGoal(int player) {
+	boolean goal1 = false;
+	boolean goal2 = false;
+	for (int y = 1; y > 6 || goal1; y++) {
+	    if (player == WHITE) {
+		if (this.getSquare(x, y) == player) {
+		    goal1 = true;
+		}
+	    }else {
+		if (this.getSquare(y, x) == player) {
+		    goal2 = true;
+		}
+	    }
+	}
+	if (goal1) {
+	    x = 7;
+	    for (int y = 1; y > 6 || goal2; y++) {
+		if (player == WHITE) {
+		    if (this.getSquare(x, y) == player) {
+			goal2 = true;
+		    }
+		}else {
+		    if (this.getSquare(y, x) == player) {
+			goal2 = true;
+		    }
+		}
+	    }
+	}else {
+	    return false;
+	}
+	return goal1 && goal2;
     }
 
     /**
@@ -116,8 +179,34 @@ public class Board {
      * @return a DList with all the pieces that make connections with the piece.
      */
 
-    protected DList listConnections(int x, int y) {
-	//Work in Progress
-	return new DList();
+    protected DList listConnections(int x, int y){
+	DList connections = new DList();
+	int player = this.getSquare(x, y)
+	int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}, {1,-1}, {-1, -1}, {1, 1}, {-1, 1}};
+	for (i = 0; i < 7; i++) {
+	    listConnectionHelper(connections, player, x + directions[i][0], y + directions[i][1], 
+				 directions[i]);
+	}
+	return connections;
     }
+
+    /**
+     * listConnectionHelper recursively adds to a list of all connections in the given direction for
+     * a given player.  
+     *
+     * @param connectionList is the existing list of connections.
+     * @param player is the player to check for connections to.
+     * @param x is the x coord.
+     * @param y is the y coord.
+     * @param direction is the length 2 array with x and y modifiers corresponding to the direction.
+     */
+    private void listConnectionHelper(DList connectionList,int player, int x, int y, int[] direction) {
+	if (getSquare(x, y) == player) {
+	    int[] coord = {x, y};
+	    connectionList.insertBack(coord);
+	}else if (getSquare(x, y) == EMPTY && x > 0 && x < 7 && y > 0 && y < 7){
+	    listConnectionHelper(connectionList, player, x + direction[0], y + direction[1], direction);
+	}
+    } 
+	
 }
