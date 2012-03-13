@@ -1,0 +1,203 @@
+Your submission of assignment pj2 at Mon Mar 12 17:48:00 2012 had some problems
+The log is appended.
+
+This is an automated account; please do not respond to it.
+
+
+Log:
+--------------------------------------------------
+--PARTNERS: cs61b-fo cs61b-eh cs61b-ei
+
+javac player/MachinePlayer.java
+
+Running test Test0...
+Test Test0 succeeds.
+
+----------------------------------------
+
+
+Running test Test1...
+Test Test1 succeeds.
+
+----------------------------------------
+
+
+Running test Test2...
+Your results don't match ours.  We were expecting:
+==================================================
+Testing clusters
+finished a test
+finished a test
+2/2 for cluster test
+==================================================
+But instead, we saw:
+==================================================
+Testing clusters
+ -1 Failed adjacency test #1 (MachinePlayer is white)
+        forceMove(3,3) should succeed
+        opponentMove(2,2) should succeed
+        forceMove(4,3) should succeed
+        opponentMove(2,3) should succeed
+        forceMove(5,3) should fail
+finished a test
+finished a test
+1/2 for cluster test
+==================================================
+Results of test Test2 were incorrect.
+
+----------------------------------------
+
+gmake: *** [Test2.test] Error 1
+
+Running test Test3...
+Test Test3 succeeds.
+
+----------------------------------------
+
+
+Running test Test4...
+Test Test4 succeeds.
+
+----------------------------------------
+
+
+Running test Test5...
+Your results don't match ours.  We were expecting:
+==================================================
+Testing chance-to-win
+finished a test
+finished a test
+2/2 for chance-to-win test
+==================================================
+But instead, we saw:
+==================================================
+Testing chance-to-win
+ -1 Failed chance-to-win test #1 -- Made bad move: [add to 31]
+Current board is:
+
+               | X . . . . . . X |
+               | . B B W B B . . |
+               | W W . . W . . . |
+               | . . . . . . . . |
+               | . . . . . . . . |
+               | . W . . W . . . |
+               | . B . . . . . . |
+               | X . . . . . . X |
+
+finished a test
+ -1 Failed chance-to-win test #2 -- Made bad move: [add to 01]
+Current board is:
+
+               | X . . . . . . X |
+               | . B B . B B W . |
+               | W . . W . . . . |
+               | . W . . . W . . |
+               | . . . . . . . . |
+               | . . . W . B W . |
+               | . B B . . . . . |
+               | X . . . . . . X |
+
+finished a test
+0/2 for chance-to-win test
+==================================================
+Results of test Test5 were incorrect.
+
+----------------------------------------
+
+gmake: *** [Test5.test] Error 1
+
+Running test Test6...
+Your results don't match ours.  We were expecting:
+==================================================
+Testing lookahead
+finished a test
+finished a test
+2/2 for lookahead test
+==================================================
+But instead, we saw:
+==================================================
+Testing lookahead
+ -1 Failed lookahead test #1 -- Made bad move: [add to 01]
+Current board is:
+
+               | X . . . . . . X |
+               | W . . . . . . . |
+               | . . . . . . . . |
+               | W . W B . . B . |
+               | . . W B . . . . |
+               | W . . . . B . . |
+               | . . . . W B . . |
+               | X . . . . . . X |
+
+finished a test
+ -1 Failed lookahead test #2 -- Made bad move: [add to 01]
+101
+Current board is:
+
+               | X B . . . . . X |
+               | W . . . . . . . |
+               | W B . . . . B . |
+               | . . . . W . . . |
+               | . . . . . . . . |
+               | . . . . . . . . |
+               | . W . . W . . . |
+               | X . . . . . B X |
+
+finished a test
+0/2 for lookahead test
+==================================================
+Results of test Test6 were incorrect.
+
+----------------------------------------
+
+gmake: *** [Test6.test] Error 1
+
+Running test Test7...
+Your results don't match ours.  We were expecting:
+==================================================
+Testing blocking of opponent about to win
+finished a test
+finished a test
+2/2 for blocking test
+==================================================
+But instead, we saw:
+==================================================
+Testing blocking of opponent about to win
+ -1 Failed blocking test #1 -- Made bad move: [add to 11]
+Current board is:
+
+               | X . B . . . . X |
+               | W W . B . W . . |
+               | . . . . W . . . |
+               | . . B . . B . . |
+               | W . . . . . . . |
+               | . W . B . . . . |
+               | . . . . . . . . |
+               | X . B . . . . X |
+
+ (Black's winning move was [add to 23].)
+finished a test
+ -1 Failed blocking test #2 -- Made bad move: [add to 21]
+Current board is:
+
+               | X B . . . . . X |
+               | W . . . . . W . |
+               | . . W . . . . . |
+               | . . W . . . . . |
+               | . . . B . . B W |
+               | . . . . . . . . |
+               | . B . . . . . . |
+               | X . . . . . B X |
+
+ (Correct move was [add to 15].)
+finished a test
+0/2 for blocking test
+==================================================
+Results of test Test7 were incorrect.
+
+----------------------------------------
+
+gmake: *** [Test7.test] Error 1
+gmake: Target `all' not remade because of errors.
+
+<<PROBLEM: One or more tests failed (terminated with non-zero exit code 512).
