@@ -1,5 +1,5 @@
 package player;
-import list.*;
+import player.list.*;
 
 public class Board {
 	public final static int EMPTY = -1;
@@ -105,12 +105,13 @@ public class Board {
 	if (!enoughPieces(player) || !inGoal(player)) {
 	    return false;
 	}else {
+	    //DFS implementation here
 	}
-	    
+	return false;
     }
     
     /**
-     * enoughPieces retruns true if "this" board has enough pieces to make a network.
+     * enoughPieces returns true if "this" board has enough pieces to make a network.
      *
      * @param player the player to check for qualifying networks.
      * @return true if board qualifies for a network for player, false if otherise.
