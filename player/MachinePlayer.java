@@ -1,7 +1,7 @@
 /* MachinePlayer.java */
 
 package player;
-import list.*;
+import player.list.*;
 
 /**
  *  An implementation of an automatic Network player.  Keeps track of moves

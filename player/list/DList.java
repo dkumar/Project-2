@@ -1,6 +1,6 @@
 /* DList.java */
 
-package list;
+package player.list;
 
 /**
  *  A DList is a mutable doubly-linked list ADT.  Its implementation is
