@@ -24,24 +24,18 @@ public class Board {
     /**
      * makeMove takes a Move m and int player and changes "this" board accordingly.
      * Assumes Move m is a legal move.
-     * If Move m is an ADD Move, and the player of playerColor is out of pieces, the method does nothing.
      * Else, makeMove adds the piece to the board and decrements the number of pieces of playerColor accordingly.
      * @param m is the Move object to be applied to "this board"
      * @playerColor is the color of the player making the move
      */
 	protected void makeMove(Move m, int playerColor) {
 		if (m.moveKind == Move.ADD) {
-			if ((playerColor == Board.BLACK) && (blackAddPieces <= 0) || (playerColor == Board.WHITE) && (whiteAddPieces <= 0)) {
-				return;
+			gameBoard[m.x1][m.y1] = playerColor;
+			if (playerColor == Board.WHITE) {
+				whiteAddPieces--;
 			}
-			else {
-				gameBoard[m.x1][m.y1] = playerColor;
-				if (playerColor == Board.WHITE) {
-					whiteAddPieces--;
-				}
-				else if (playerColor == Board.BLACK){
-					blackAddPieces--;
-				}
+			else if (playerColor == Board.BLACK){
+				blackAddPieces--;
 			}
 		}
 		else if (m.moveKind == Move.STEP) {

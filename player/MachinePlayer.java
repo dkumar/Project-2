@@ -241,25 +241,24 @@ public class MachinePlayer extends Player {
 		      return false;																					//Neither can have pieces in 00, 07, 70, 77 (which code checks for)
 		  }
 	  }
-
 	  if(clusterCheck(m.x1, m.y1, playerColor)) {
 		  return false;
 	  }
 	  else {
 		  return true;
 	  }
-
   }
 
    /**
-     * checkNeighbor checks to see if less than 2 pieces neighbor square (x,y)
+     * checkNeighbor checks to see if less than numOfPieces pieces neighbor square (x,y)
      * A piece neighbors a square if it is connected to the square orthogonally and is the same color as playerColor
      * @param x is the x-coordinate of the game board square
      * @param y is the y-coorindate of the game board square
      * @param playerColor is the color of pieces to search for
-     * @return true if less than 2 pieces neighbor square (x,y); false otherwise
+     * @param numOfPieces is the cut-off number of pieces for which checkNeighbor would return true
+     * @return true if less than numOfPieces pieces neighbor square (x,y); false otherwise
      */
-   private boolean checkNeighbor(int x, int y, int playerColor) {
+   private boolean checkNeighbor(int x, int y, int playerColor, int numOfPieces) {
 	   int neighbors = 0;
 	   if (machineBoard.getSquare(x-1, y-1) == playerColor) {
 		   neighbors++;
@@ -285,7 +284,7 @@ public class MachinePlayer extends Player {
 	   if (machineBoard.getSquare(x, y-1) == playerColor) {
 		   neighbors++;
 	   }
-	   if (neighbors >= 2) {
+	   if (neighbors >= numOfPieces) {
 		   return false;
 	   }
 	   else {
@@ -304,30 +303,30 @@ public class MachinePlayer extends Player {
    private boolean clusterCheck(int x, int y, int playerColor) {
 	   boolean upLeft = true, left = true, downLeft = true, down = true, downRight = true, right = true, upRight = true, up = true, middle;
 	   if (machineBoard.getSquare(x-1, y-1) == playerColor) {
-		   upLeft = checkNeighbor(x-1, y-1, playerColor);
+		   upLeft = checkNeighbor(x-1, y-1, playerColor, 1);
 	   }
 	   if (machineBoard.getSquare(x-1, y) == playerColor) {
-		   left = checkNeighbor(x-1, y, playerColor);
+		   left = checkNeighbor(x-1, y, playerColor, 1);
 	   }
 	   if (machineBoard.getSquare(x-1, y+1) == playerColor) {
-		   downLeft = checkNeighbor(x-1, y-1, playerColor);
+		   downLeft = checkNeighbor(x-1, y+1, playerColor, 1);
 	   }
 	   if (machineBoard.getSquare(x, y+1) == playerColor) {
-		   down = checkNeighbor(x, y+1, playerColor);
+		   down = checkNeighbor(x, y+1, playerColor, 1);
 	   }
 	   if (machineBoard.getSquare(x+1, y+1) == playerColor) {
-		   downRight = checkNeighbor(x+1, y+1, playerColor);
+		   downRight = checkNeighbor(x+1, y+1, playerColor, 1);
 	   }
 	   if (machineBoard.getSquare(x+1, y) == playerColor) {
-		   right = checkNeighbor(x+1, y, playerColor);
+		   right = checkNeighbor(x+1, y, playerColor, 1);
 	   }
 	   if (machineBoard.getSquare(x+1, y-1) == playerColor) {
-		   upRight = checkNeighbor(x+1, y-1, playerColor);
+		   upRight = checkNeighbor(x+1, y-1, playerColor, 1);
 	   }
 	   if (machineBoard.getSquare(x, y-1) == playerColor) {
-		   up = checkNeighbor(x, y-1, playerColor);
+		   up = checkNeighbor(x, y-1, playerColor, 1);
 	   }
-	   middle = checkNeighbor(x, y, playerColor);
+	   middle = checkNeighbor(x, y, playerColor, 2);
 	   return !(upLeft && left && downLeft && down && downRight && right && upRight && up && middle);
    }
 
